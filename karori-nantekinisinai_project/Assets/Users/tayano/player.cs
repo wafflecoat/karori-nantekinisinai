@@ -46,6 +46,7 @@ public class player: MonoBehaviour
         moving = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         moving.Normalize();
         moving = moving * speed;
+        moving.y = rb.velocity.y;
     }
 
     public void RotateToMovingDirection()
