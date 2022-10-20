@@ -82,4 +82,5 @@ public class player: MonoBehaviour
             jumpNow = true;
         }
     }
+    
 }
