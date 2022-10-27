@@ -14,12 +14,18 @@ public class player: MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+
         speed = 5;
        
     }
 
     private void OnCollisionEnter(Collision other)
     {
+        if (other.gameObject.CompareTag("Player2"))
+        {
+            Vector3 force = transform.position - other.transform.position;
+            rb.AddForce(force,ForceMode.Impulse);
+        }
         if (jumpNow == true)
         {
             if (other.gameObject.CompareTag("ground"))
@@ -38,6 +44,7 @@ public class player: MonoBehaviour
 
     void FixedUpdate()
     {
+
         RotateToMovingDirection();
     }
     void MovementControll()
