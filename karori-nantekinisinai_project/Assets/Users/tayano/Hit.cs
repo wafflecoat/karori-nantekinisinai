@@ -26,9 +26,16 @@ public class Hit : MonoBehaviour
             {
                 Debug.Log(hitObj+"hitObjÇ™ë∂ç›ÇµÇƒÇ¢Ç‹ÇπÇÒ");
             }
-           // GameObject child = transform.GetChild(0).gameObject;
-            //child.SetActive(false);
+           
         }
+        if (Input.GetButtonDown("R1"))
+        {
+            if( hitObj!=null)
+            {
+                hitObj.SetActive(false);
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,38 +43,27 @@ public class Hit : MonoBehaviour
         if (other.gameObject.name == "floor")
         {
             hitObj = other.gameObject;
-            // collision.transform.SetParent(this.gameObject.transform);
+         
+        }
+        if (other.gameObject.name == "wall")
+        {
+            hitObj = other.gameObject;
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log(collision.gameObject.name);
-    //    //if (collision.gameObject.name == "Hit_ground")
-    //    if (collision.gameObject.name == "floor")
-    //    {
-    //        hitObj = collision.gameObject;
-    //       // collision.transform.SetParent(this.gameObject.transform);
-    //    }
-    //    Debug.Log("ìñÇΩÇ¡ÇƒÇ¢ÇÈ");
-    //}
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "floor")
         {
             hitObj = null;
-            //this.gameObject.transform.DetachChildren();
+            
+        }
+        if(other.gameObject.name == "wall")
+        {
+            hitObj = null;
         }
     }
 
-   /* private void OnCollisionExit(Collision collision)
-    {
-        //if (collision.gameObject.name == "floor")
-        if (collision.gameObject.name == "Hit_ground")
-        {
-            hitObj = null;
-            //this.gameObject.transform.DetachChildren();
-        }
-        Debug.Log("ó£ÇÍÇΩ");
-    }*/
+   
 }
