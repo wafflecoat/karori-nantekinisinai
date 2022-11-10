@@ -22,7 +22,6 @@ public class Result_Event : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        Start_and_End.win = 2;
         Character_drow();
         yield return StartCoroutine(fadein());
         ob_Event.SetActive(true);
