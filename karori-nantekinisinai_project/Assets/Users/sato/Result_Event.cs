@@ -8,20 +8,24 @@ public class Result_Event : MonoBehaviour
 {
     public GameObject ob_fadeout;
     public GameObject ob_Event;
+    public GameObject ob_win;
+    [SerializeField] GameObject Gal_image;
+    [SerializeField] GameObject Seiso_image;
     private Image Fade_panel;
     [SerializeField] private float fadeSpeed;
 
     private void Awake()
     {
         Fade_panel = ob_fadeout.GetComponent<Image>();
+        ob_fadeout.SetActive(true);
     }
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        Start_and_End.win = 2;
         Character_drow();
         yield return StartCoroutine(fadein());
         ob_Event.SetActive(true);
-        //continueを選択する
     }
 
     // Update is called once per frame
@@ -34,11 +38,15 @@ public class Result_Event : MonoBehaviour
     {
         if (Start_and_End.win == 1)
         {
+            ob_win.SetActive(true);
             //プレイヤー１を表示
+            Gal_image.SetActive(true);
         }
         else if(Start_and_End.win == 2)
         {
+            ob_win.SetActive(true);
             //プレイヤー２を表示
+            Seiso_image.SetActive(true);
         }
         else
         {
