@@ -42,14 +42,14 @@ public class Result_Button : MonoBehaviour
     {
         yield return StartCoroutine(fadeout());
         Debug.Log("continue");
-        //SceneManager.LoadScene("main");
+        SceneManager.LoadScene("main");
     }
 
     IEnumerator quit()
     {
         yield return StartCoroutine(fadeout());
         Debug.Log("end");
-        //Application.Quit();
+        Application.Quit();
     }
 
     IEnumerator fadeout()
