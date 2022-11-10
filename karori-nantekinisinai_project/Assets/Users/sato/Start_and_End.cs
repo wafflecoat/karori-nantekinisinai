@@ -105,8 +105,9 @@ public class Start_and_End : MonoBehaviour
     IEnumerator Start_Count()
     {
         var wait = new WaitForSeconds(1f);
-        for(int i = 0; i < 3; i++)
+        for(int i = 2; i > -1; i--)
         {
+            Debug.Log($"{i}");
             number_text[i].SetActive(true);
             yield return wait;
             number_text[i].SetActive(false);
