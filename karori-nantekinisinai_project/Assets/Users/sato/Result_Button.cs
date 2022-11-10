@@ -49,7 +49,7 @@ public class Result_Button : MonoBehaviour
     {
         yield return StartCoroutine(fadeout());
         Debug.Log("end");
-        Application.Quit();
+         Application.Quit();
     }
 
     IEnumerator fadeout()
