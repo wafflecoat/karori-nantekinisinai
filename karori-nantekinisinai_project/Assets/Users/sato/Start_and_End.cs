@@ -11,7 +11,7 @@ public class Start_and_End : MonoBehaviour
 {
     public GameObject ob_fadeout;
     
-    public int winner = 0;//１：1P勝利、２：2P勝利、３：時間切れ
+    public static int win = 0;//１：1P勝利、２：2P勝利、３：時間切れ
 
     [SerializeField] private float FadeSpeed;
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
@@ -25,6 +25,7 @@ public class Start_and_End : MonoBehaviour
     private GameObject GameSet_text;
     private GameObject TimeUp_text;
 
+    private Coroutine _Time_Count;
 
     void Awake()
     {
@@ -52,7 +53,7 @@ public class Start_and_End : MonoBehaviour
         //３カウント後スタートの表示
         yield return StartCoroutine(Start_Count());
         //制限時間のカウントスタート
-        StartCoroutine(Time_Count());
+        _Time_Count = StartCoroutine(Time_Count());
 
     }
 
@@ -60,15 +61,15 @@ public class Start_and_End : MonoBehaviour
     private void OnTriggerEnter(Collider player)
     {
 
-        if(player.gameObject.CompareTag("Player") && winner == 0 )
+        if(player.gameObject.CompareTag("Player") && win == 0 )
         {
-            winner = 2;
+            win = 2;
             Debug.Log("1");
             StartCoroutine(GameEnd());
         }
-        else if (player.gameObject.CompareTag("Player2") && winner == 0)
+        else if (player.gameObject.CompareTag("Player2") && win == 0)
         {
-            winner = 1;
+            win = 1;
             Debug.Log("2");
             StartCoroutine(GameEnd());
         }
@@ -133,6 +134,7 @@ public class Start_and_End : MonoBehaviour
                 last_time = Time_limit;
             }
         }
+        win = 3;
         StartCoroutine(GameEnd());
     }
 
@@ -146,9 +148,16 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
-        StopCoroutine(Time_Count());
-        if (winner == 3) TimeUp_text.SetActive(true);
-        else GameSet_text.SetActive(true);
+
+        if (win == 3)
+        {
+            TimeUp_text.SetActive(true);
+        }
+        else
+        {
+            StopCoroutine(_Time_Count);
+            GameSet_text.SetActive(true);
+        }
 
         yield return new WaitForSeconds(1.5f);
         yield return StartCoroutine(fadeout());

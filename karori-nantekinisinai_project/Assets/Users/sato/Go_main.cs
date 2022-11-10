@@ -19,7 +19,7 @@ public class Go_main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Submit"))
         {
             Debug.Log("aaa");
             StartCoroutine(fadeout());
