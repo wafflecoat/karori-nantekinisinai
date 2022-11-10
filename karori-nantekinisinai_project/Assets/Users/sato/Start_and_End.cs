@@ -161,6 +161,6 @@ public class Start_and_End : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
         yield return StartCoroutine(fadeout());
-        //SceneManager.LoadScene("Title_scene");
+        SceneManager.LoadScene("Title_scene");
     }
 }
