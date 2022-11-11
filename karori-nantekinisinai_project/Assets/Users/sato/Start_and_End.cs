@@ -55,6 +55,8 @@ public class Start_and_End : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        //制限時間の表示
+        Time_draw();
         //画面が黒からフェードイン
         yield return StartCoroutine(fadein());
 
@@ -62,6 +64,7 @@ public class Start_and_End : MonoBehaviour
         //３カウント後スタートの表示
         yield return StartCoroutine(Start_Count());
         //制限時間のカウントスタート
+        Time_limit--;
         _Time_Count = StartCoroutine(Time_Count());
 
     }
@@ -150,7 +153,7 @@ public class Start_and_End : MonoBehaviour
 
     private void Time_draw()
     {
-        double game_time = Math.Ceiling(Time_limit) - 1;
+        double game_time = Math.Ceiling(Time_limit);
         int minutes = (int)game_time / 60;
         int seconds = (int)game_time % 60;
         Debug.Log(minutes + ":" + seconds / 10 + seconds % 10);
