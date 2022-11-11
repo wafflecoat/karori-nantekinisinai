@@ -17,31 +17,40 @@ public class Start_and_End : MonoBehaviour
     [SerializeField] private float Time_limit;//ƒQ[ƒ€‚Ì§ŒÀŠÔA’PˆÊ‚Í•b
 
     private Image fade_panel;
-    private GameObject UI_Canvas;
-    private Transform TF_Canvas;
+    private Sprite sprite;
+    private GameObject UI_Canvas_texts;
+    private Transform TF_Canvas_texts;
 
     private GameObject[] number_text;
     private GameObject Start_text;
     private GameObject GameSet_text;
     private GameObject TimeUp_text;
+    private GameObject Minutes;//c‚èŠÔ‚Ì•ª
+    private GameObject Seconds_10;//c‚èŠÔ‚Ì•b‚Ì‚P‚O‚ÌˆÊ
+    private GameObject Seconds_1;//c‚èŠÔ‚Ì•b‚Ì‚P‚ÌˆÊ
 
     private Coroutine _Time_Count;
 
     void Awake()
     {
-        UI_Canvas = GameObject.Find("Canvas_texts");
-        TF_Canvas = UI_Canvas.GetComponent<RectTransform>();
+        UI_Canvas_texts = GameObject.Find("Canvas_texts");
+        TF_Canvas_texts = UI_Canvas_texts.GetComponent<RectTransform>();
         fade_panel = ob_fadeout.GetComponent<Image>();
         number_text = new GameObject[3];
 
         //‚P`‚R‚ÌŠG‚ğæ“¾
         for (int i = 0; i < 3; i++)
         {
-            number_text[i] = TF_Canvas.GetChild(i).gameObject;
+            number_text[i] = TF_Canvas_texts.GetChild(i).gameObject;
         }
-        Start_text = TF_Canvas.GetChild(3).gameObject;
-        GameSet_text = TF_Canvas.GetChild(4).gameObject;
-        TimeUp_text = TF_Canvas.GetChild(5).gameObject;
+        Start_text = TF_Canvas_texts.GetChild(3).gameObject;
+        GameSet_text = TF_Canvas_texts.GetChild(4).gameObject;
+        TimeUp_text = TF_Canvas_texts.GetChild(5).gameObject;
+        Minutes = TF_Canvas_texts.GetChild(6).gameObject;
+        Seconds_10 = TF_Canvas_texts.GetChild(7).gameObject;
+        Seconds_1 = TF_Canvas_texts.GetChild(8).gameObject;
+
+        ob_fadeout.SetActive(true);
     }
     // Start is called before the first frame update
     IEnumerator Start()
@@ -145,6 +154,15 @@ public class Start_and_End : MonoBehaviour
         int minutes = (int)game_time / 60;
         int seconds = (int)game_time % 60;
         Debug.Log(minutes + ":" + seconds / 10 + seconds % 10);
+        //‰½•ª‚©•\¦
+        sprite = Resources.Load<Sprite>($"Images/UI/UI_number_{minutes % 10}_outline");
+        Minutes.GetComponent<Image>().sprite = sprite;
+        //‰½•bi‚P‚O‚ÌˆÊj‚ğ•\¦
+        sprite = Resources.Load<Sprite>($"Images/UI/UI_number_{seconds / 10}_outline");
+        Seconds_10.GetComponent<Image>().sprite = sprite;
+        //‰½•bi‚P‚ÌˆÊj‚ğ•\¦
+        sprite = Resources.Load<Sprite>($"Images/UI/UI_number_{seconds % 10}_outline");
+        Seconds_1.GetComponent<Image>().sprite = sprite;
     }
 
     IEnumerator GameEnd()
