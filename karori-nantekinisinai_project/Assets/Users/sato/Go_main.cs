@@ -8,14 +8,17 @@ public class Go_main : MonoBehaviour
 {
     public GameObject ob_fadeout;
     [SerializeField] private float fadeSpeed;
+    [SerializeField] private AudioClip SE_submit;
 
     private Image fade_panel;
+    private AudioSource AudioSource;
     private bool Get_submit = false;
 
     // Start is called before the first frame update
     void Start()
     {
         fade_panel = ob_fadeout.GetComponent<Image>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -25,6 +28,7 @@ public class Go_main : MonoBehaviour
         {
             Get_submit = true;
             Debug.Log("Œˆ’è‚ª‰Ÿ‚³‚ê‚½");
+            AudioSource.PlayOneShot(SE_submit);
             StartCoroutine(Game_start());
         }
     }

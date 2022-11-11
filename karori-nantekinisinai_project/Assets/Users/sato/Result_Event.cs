@@ -9,9 +9,9 @@ public class Result_Event : MonoBehaviour
     public GameObject ob_fadeout;
     public GameObject ob_Event;
     public GameObject ob_win;
-    [SerializeField] GameObject Gal_image;
-    [SerializeField] GameObject Seiso_image;
+    [SerializeField] GameObject Chara_image;
     private Image Fade_panel;
+    private Sprite sprite;
     [SerializeField] private float fadeSpeed;
 
     private void Awake()
@@ -39,13 +39,15 @@ public class Result_Event : MonoBehaviour
         {
             ob_win.SetActive(true);
             //プレイヤー１を表示
-            Gal_image.SetActive(true);
+            sprite = Resources.Load<Sprite>("Images/Character/result_gal_nomal");
+            Chara_image.GetComponent<Image>().sprite = sprite;
         }
         else if(Start_and_End.win == 2)
         {
             ob_win.SetActive(true);
             //プレイヤー２を表示
-            Seiso_image.SetActive(true);
+            sprite = Resources.Load<Sprite>("Images/Character/result_seiso");
+            Chara_image.GetComponent<Image>().sprite = sprite;
         }
         else
         {
@@ -65,18 +67,4 @@ public class Result_Event : MonoBehaviour
             if (color.a <= 0) break;
         }
     }
-
-    IEnumerator fadeout()
-    {
-        var wait = new WaitForEndOfFrame();
-        while (true)
-        {
-            yield return wait;
-            Color color = Fade_panel.color;
-            color.a += fadeSpeed * Time.deltaTime;
-            Fade_panel.color = color;
-            if (color.a >= 1) break;
-        }
-    }
-
 }
