@@ -33,7 +33,7 @@ public class Start_and_End : MonoBehaviour
 
     void Awake()
     {
-        UI_Canvas_texts = GameObject.Find("Canvas_texts");
+        UI_Canvas_texts = GameObject.Find("Canvas_UI");
         TF_Canvas_texts = UI_Canvas_texts.GetComponent<RectTransform>();
         fade_panel = ob_fadeout.GetComponent<Image>();
         number_text = new GameObject[3];
