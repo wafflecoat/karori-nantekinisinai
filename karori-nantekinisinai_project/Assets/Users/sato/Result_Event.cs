@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class Result_Event : MonoBehaviour
 {
-    public GameObject ob_fadeout;
-    public GameObject ob_Event;
-    public GameObject ob_win;
+    [SerializeField] GameObject ob_fadeout;
+    [SerializeField] GameObject ob_Event;
+    [SerializeField] GameObject ob_win;
+    [SerializeField] GameObject ob_draw;
     [SerializeField] GameObject Chara_image;
     private Image Fade_panel;
     private Sprite sprite;
@@ -52,6 +53,7 @@ public class Result_Event : MonoBehaviour
         else
         {
             //ˆø‚«•ª‚¯
+            ob_draw.SetActive(true);
         }
     }
 
