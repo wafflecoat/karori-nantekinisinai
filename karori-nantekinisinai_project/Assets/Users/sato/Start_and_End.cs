@@ -20,6 +20,7 @@ public class Start_and_End : MonoBehaviour
     private Sprite sprite;
     private GameObject UI_Canvas_texts;
     private Transform TF_Canvas_texts;
+    private AudioSource AudioSource;
 
     private GameObject[] number_text;
     private GameObject Start_text;
@@ -36,6 +37,8 @@ public class Start_and_End : MonoBehaviour
         UI_Canvas_texts = GameObject.Find("Canvas_UI");
         TF_Canvas_texts = UI_Canvas_texts.GetComponent<RectTransform>();
         fade_panel = ob_fadeout.GetComponent<Image>();
+        AudioSource = GetComponent<AudioSource>();
+
         number_text = new GameObject[3];
 
         //１～３の絵を取得
@@ -63,6 +66,8 @@ public class Start_and_End : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //３カウント後スタートの表示
         yield return StartCoroutine(Start_Count());
+        //BGMスタート
+        AudioSource.Play();
         //制限時間のカウントスタート
         Time_limit--;
         _Time_Count = StartCoroutine(Time_Count());
@@ -135,7 +140,7 @@ public class Start_and_End : MonoBehaviour
         var wait = new WaitForFixedUpdate();//FixedUpdateはデフォルトで0.02秒ごとに呼ばれる
         float last_time = Time_limit;
         Time_draw();
-        while (0 < Time_limit) 
+        while (-1 < Time_limit) 
         {
             yield return wait;
             Time_limit -= 0.02f;
@@ -145,6 +150,10 @@ public class Start_and_End : MonoBehaviour
                 //制限時間表示の変更
                 Time_draw();
                 last_time = Time_limit;
+                if(Time_limit <= 30)
+                {
+                    AudioSource.pitch = 1.2f;
+                }
             }
         }
         win = 3;
