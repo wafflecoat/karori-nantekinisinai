@@ -16,7 +16,10 @@ public class Start_and_End : MonoBehaviour
 
     [SerializeField] private float FadeSpeed;
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
+    [SerializeField] private AudioSource SE_evolution;
 
+    private int Player1_size;// 0:S、1:M、2:L
+    private int Player2_size;// 0:S、1:M、2:L
     private GameObject Player1;
     private GameObject Player2;
     private player player1;//プレイヤー１のスクリプト
@@ -206,24 +209,32 @@ public class Start_and_End : MonoBehaviour
     private void Player_size_draw()
     {
         //ギャルのサイズ表示変更
-        if(player1.force_variable >= 100 && 150 > player1.force_variable)
+        if(player1.force_variable >= 100 && 150 > player1.force_variable && Player1_size != 1)
         {
+            Player1_size = 1;
+            SE_evolution.Play();
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeM_left");
             gal_size.GetComponent<Image>().sprite = size_sprite;
         }
-        else if(player1.force_variable >= 150)
+        else if(player1.force_variable >= 150 && Player1_size != 2)
         {
+            Player1_size = 2;
+            SE_evolution.Play();
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeL_left");
             gal_size.GetComponent<Image>().sprite = size_sprite;
         }
         //清楚のサイズ表示変更
-        if (player2.force_variable >= 100 && 150 > player2.force_variable)
+        if (player2.force_variable >= 100 && 150 > player2.force_variable && Player2_size != 1)
         {
+            Player2_size = 1;
+            SE_evolution.Play();
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeM_right");
             seiso_size.GetComponent<Image>().sprite = size_sprite;
         }
-        else if (player2.force_variable >= 150)
+        else if (player2.force_variable >= 150 && Player2_size != 2)
         {
+            Player2_size = 2;
+            SE_evolution.Play();
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeL_right");
             seiso_size.GetComponent<Image>().sprite = size_sprite;
         }
