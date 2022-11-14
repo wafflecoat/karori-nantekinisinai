@@ -82,6 +82,9 @@ public class Start_and_End : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //３カウント後スタートの表示
         yield return StartCoroutine(Start_Count());
+        //プレイヤーが操作出来るように
+        player1.enabled = true;
+        player2.enabled = true;
         //BGMスタート
         AudioSource.Play();
         //制限時間のカウントスタート
@@ -227,7 +230,6 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
-
         if (win == 3)
         {
             TimeUp_text.SetActive(true);
