@@ -42,6 +42,7 @@ public class Result_Event : MonoBehaviour
             //プレイヤー１を表示
             sprite = Resources.Load<Sprite>("Images/Character/result_gal_nomal");
             Chara_image.GetComponent<Image>().sprite = sprite;
+            Chara_image.SetActive(true);
         }
         else if(Start_and_End.win == 2)
         {
@@ -49,6 +50,7 @@ public class Result_Event : MonoBehaviour
             //プレイヤー２を表示
             sprite = Resources.Load<Sprite>("Images/Character/result_seiso");
             Chara_image.GetComponent<Image>().sprite = sprite;
+            Chara_image.SetActive(true);
         }
         else
         {
