@@ -12,18 +12,18 @@ public class Start_and_End : MonoBehaviour
 {
     public GameObject ob_fadeout;
     
-    public static int win = 0;//１：1P勝利、２：2P勝利、３：時間切れ
+    public static int win;//１：1P勝利、２：2P勝利、３：時間切れ
 
     [SerializeField] private float FadeSpeed;
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
 
     private GameObject Player1;
     private GameObject Player2;
-    private player player1;
-    private player2 player2;
+    private player player1;//プレイヤー１のスクリプト
+    private player2 player2;//プレイヤー２のスクリプト
     private Image fade_panel;
-    private Sprite sprite;
-    private Sprite size_sprite;
+    private Sprite sprite;//制限時間表示用
+    private Sprite size_sprite;//プレイヤーのサイズ表示用
     private GameObject UI_Canvas_texts;
     private Transform TF_Canvas_texts;
     private AudioSource AudioSource;
@@ -42,6 +42,7 @@ public class Start_and_End : MonoBehaviour
 
     void Awake()
     {
+        win = 0;
         //プレイヤーのスクリプト取得
         Player1 = GameObject.FindWithTag("Player1");
         player1 = Player1.GetComponent<player>();
