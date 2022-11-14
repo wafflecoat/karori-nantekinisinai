@@ -6,6 +6,7 @@ using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Runtime.CompilerServices;
 
 public class Start_and_End : MonoBehaviour
 {
@@ -16,13 +17,20 @@ public class Start_and_End : MonoBehaviour
     [SerializeField] private float FadeSpeed;
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
 
+    private GameObject Player1;
+    private GameObject Player2;
+    private player player1;
+    private player2 player2;
     private Image fade_panel;
     private Sprite sprite;
+    private Sprite size_sprite;
     private GameObject UI_Canvas_texts;
     private Transform TF_Canvas_texts;
     private AudioSource AudioSource;
 
     private GameObject[] number_text;
+    private GameObject gal_size;
+    private GameObject seiso_size;
     private GameObject Start_text;
     private GameObject GameSet_text;
     private GameObject TimeUp_text;
@@ -34,6 +42,12 @@ public class Start_and_End : MonoBehaviour
 
     void Awake()
     {
+        //プレイヤーのスクリプト取得
+        Player1 = GameObject.FindWithTag("Player1");
+        player1 = Player1.GetComponent<player>();
+        Player2 = GameObject.FindWithTag("Player2");
+        player2 = Player2.GetComponent<player2>();
+
         UI_Canvas_texts = GameObject.Find("Canvas_UI");
         TF_Canvas_texts = UI_Canvas_texts.GetComponent<RectTransform>();
         fade_panel = ob_fadeout.GetComponent<Image>();
@@ -46,6 +60,8 @@ public class Start_and_End : MonoBehaviour
         {
             number_text[i] = TF_Canvas_texts.GetChild(i).gameObject;
         }
+        gal_size = TF_Canvas_texts.GetChild(4).gameObject;
+        seiso_size = TF_Canvas_texts.GetChild(5).gameObject;
         Start_text = TF_Canvas_texts.GetChild(6).gameObject;
         GameSet_text = TF_Canvas_texts.GetChild(7).gameObject;
         TimeUp_text = TF_Canvas_texts.GetChild(8).gameObject;
@@ -72,6 +88,12 @@ public class Start_and_End : MonoBehaviour
         Time_limit--;
         _Time_Count = StartCoroutine(Time_Count());
 
+    }
+
+    private void Update()
+    {
+        //プレイヤーのサイズ表示変更
+        Player_size_draw();
     }
 
     //落ちた時の勝敗判定
@@ -175,6 +197,32 @@ public class Start_and_End : MonoBehaviour
         //何秒（１の位）を表示
         sprite = Resources.Load<Sprite>($"Images/UI/UI_number_{seconds % 10}_outline");
         Seconds_1.GetComponent<Image>().sprite = sprite;
+    }
+
+    private void Player_size_draw()
+    {
+        //ギャルのサイズ表示変更
+        if(player1.force_variable >= 100 && 150 > player1.force_variable)
+        {
+            size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeM_left");
+            gal_size.GetComponent<Image>().sprite = size_sprite;
+        }
+        else if(player1.force_variable >= 150)
+        {
+            size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeL_left");
+            gal_size.GetComponent<Image>().sprite = size_sprite;
+        }
+        //清楚のサイズ表示変更
+        if (player2.force_variable >= 100 && 150 > player2.force_variable)
+        {
+            size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeM_right");
+            gal_size.GetComponent<Image>().sprite = size_sprite;
+        }
+        else if (player2.force_variable >= 150)
+        {
+            size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeL_right");
+            gal_size.GetComponent<Image>().sprite = size_sprite;
+        }
     }
 
     IEnumerator GameEnd()
