@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player: MonoBehaviour
+public class player2: MonoBehaviour
 {
     private bool jumpNow;
     public float jumpPwer;
@@ -23,7 +23,7 @@ public class player: MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player2"))
+        if (other.gameObject.CompareTag("Player1"))
         {
             Vector3 force = transform.position - other.transform.position * power * player_force;
             rb.AddForce(force,ForceMode.Impulse);
@@ -52,7 +52,7 @@ public class player: MonoBehaviour
     void MovementControll()
     {
         //éŒÇﬂà⁄ìÆÇ∆ècâ°ÇÃà⁄ìÆÇìØÇ∂ë¨ìxÇ…Ç∑ÇÈÇΩÇﬂÇ…Vector3ÇNormalize()Ç∑ÇÈÅB
-        moving = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        moving = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
         moving.Normalize();
         moving = moving * speed;
         moving.y = rb.velocity.y;
@@ -85,7 +85,7 @@ public class player: MonoBehaviour
     void jump()
     {
         if (jumpNow == true) return;
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump2"))
         {
             rb.AddForce(transform.up * jumpPwer, ForceMode.Impulse);
             jumpNow = true;

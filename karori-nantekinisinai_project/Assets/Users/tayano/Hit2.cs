@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hit : MonoBehaviour
+public class Hit2 : MonoBehaviour
 {
     [SerializeField]
-    private player player;
+    private player2 player;
 
     private GameObject hitObj;
 
@@ -18,7 +18,7 @@ public class Hit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("L1"))
+        if (Input.GetButtonDown("L1_2"))
         {
             if(hitObj!=null)
             {
@@ -31,7 +31,7 @@ public class Hit : MonoBehaviour
             }
            
         }
-        if (Input.GetButtonDown("R1"))
+        if (Input.GetButtonDown("R1_2"))
         {
             if( hitObj!=null)
             {
