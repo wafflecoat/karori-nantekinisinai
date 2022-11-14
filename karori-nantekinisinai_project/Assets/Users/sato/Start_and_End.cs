@@ -17,6 +17,7 @@ public class Start_and_End : MonoBehaviour
     [SerializeField] private float FadeSpeed;
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
     [SerializeField] private AudioSource SE_evolution;
+    [SerializeField] private AudioSource SE_fall;
 
     private int Player1_size;// 0:S、1:M、2:L
     private int Player2_size;// 0:S、1:M、2:L
@@ -106,7 +107,7 @@ public class Start_and_End : MonoBehaviour
     //落ちた時の勝敗判定
     private void OnTriggerEnter(Collider player)
     {
-
+        SE_fall.Play();
         if(player.gameObject.CompareTag("Player1") && win == 0 )
         {
             win = 2;
@@ -242,10 +243,6 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
-        //プレイヤーの操作無効に
-        player1.enabled = false;
-        player2.enabled = false;
-
         if (win == 3)
         {
             TimeUp_text.SetActive(true);
