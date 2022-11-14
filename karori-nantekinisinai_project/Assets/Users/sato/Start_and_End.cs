@@ -219,12 +219,12 @@ public class Start_and_End : MonoBehaviour
         if (player2.force_variable >= 100 && 150 > player2.force_variable)
         {
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeM_right");
-            gal_size.GetComponent<Image>().sprite = size_sprite;
+            seiso_size.GetComponent<Image>().sprite = size_sprite;
         }
         else if (player2.force_variable >= 150)
         {
             size_sprite = Resources.Load<Sprite>("Images/UI/UI_sizeL_right");
-            gal_size.GetComponent<Image>().sprite = size_sprite;
+            seiso_size.GetComponent<Image>().sprite = size_sprite;
         }
     }
 
