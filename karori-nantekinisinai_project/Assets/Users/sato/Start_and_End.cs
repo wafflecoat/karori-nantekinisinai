@@ -46,12 +46,12 @@ public class Start_and_End : MonoBehaviour
         {
             number_text[i] = TF_Canvas_texts.GetChild(i).gameObject;
         }
-        Start_text = TF_Canvas_texts.GetChild(3).gameObject;
-        GameSet_text = TF_Canvas_texts.GetChild(4).gameObject;
-        TimeUp_text = TF_Canvas_texts.GetChild(5).gameObject;
-        Minutes = TF_Canvas_texts.GetChild(6).gameObject;
-        Seconds_10 = TF_Canvas_texts.GetChild(7).gameObject;
-        Seconds_1 = TF_Canvas_texts.GetChild(8).gameObject;
+        Start_text = TF_Canvas_texts.GetChild(6).gameObject;
+        GameSet_text = TF_Canvas_texts.GetChild(7).gameObject;
+        TimeUp_text = TF_Canvas_texts.GetChild(8).gameObject;
+        Minutes = TF_Canvas_texts.GetChild(9).gameObject;
+        Seconds_10 = TF_Canvas_texts.GetChild(10).gameObject;
+        Seconds_1 = TF_Canvas_texts.GetChild(11).gameObject;
 
         ob_fadeout.SetActive(true);
     }
@@ -78,7 +78,7 @@ public class Start_and_End : MonoBehaviour
     private void OnTriggerEnter(Collider player)
     {
 
-        if(player.gameObject.CompareTag("Player") && win == 0 )
+        if(player.gameObject.CompareTag("Player1") && win == 0 )
         {
             win = 2;
             Debug.Log("1");
