@@ -175,7 +175,7 @@ public class Start_and_End : MonoBehaviour
                 //制限時間表示の変更
                 Time_draw();
                 last_time = Time_limit;
-                if(Time_limit <= 30)
+                if(Time_limit <= 60)
                 {
                     AudioSource.pitch = 1.2f;
                 }
@@ -230,6 +230,10 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
+        //プレイヤーの操作無効に
+        player1.enabled = false;
+        player2.enabled = false;
+
         if (win == 3)
         {
             TimeUp_text.SetActive(true);
