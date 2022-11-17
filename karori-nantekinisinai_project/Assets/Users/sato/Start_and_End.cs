@@ -24,8 +24,12 @@ public class Start_and_End : MonoBehaviour
     private int Player2_size;// 0:S、1:M、2:L
     private GameObject Player1;
     private GameObject Player2;
+    private GameObject Hit1;
+    private GameObject Hit2;
     private player player1;//プレイヤー１のスクリプト
     private player2 player2;//プレイヤー２のスクリプト
+    private Hit hit1;//１P食べるスクリプト
+    private Hit2 hit2;//２P食べるスクリプト
     private Image fade_panel;
     private Sprite sprite;//制限時間表示用
     private Sprite size_sprite;//プレイヤーのサイズ表示用
@@ -53,6 +57,11 @@ public class Start_and_End : MonoBehaviour
         player1 = Player1.GetComponent<player>();
         Player2 = GameObject.FindWithTag("Player2");
         player2 = Player2.GetComponent<player2>();
+        //食べるスクリプト取得
+        Hit1 = GameObject.Find("Hit_ground");
+        hit1 = Hit1.GetComponent<Hit>();
+        Hit2 = GameObject.Find("Hit_ground_2");
+        hit2 = Hit2.GetComponent<Hit2>();
 
         UI_Canvas_texts = GameObject.Find("Canvas_UI");
         TF_Canvas_texts = UI_Canvas_texts.GetComponent<RectTransform>();
@@ -91,6 +100,9 @@ public class Start_and_End : MonoBehaviour
         //プレイヤーが操作出来るように
         player1.enabled = true;
         player2.enabled = true;
+        hit1.enabled = true;
+        hit2.enabled = true;
+
         //BGMスタート
         AudioSource.Play();
         //制限時間のカウントスタート
@@ -245,6 +257,8 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
+        hit1.enabled = false;
+        hit2.enabled = false;
         SE_whistle.Play();
         if (win == 3)
         {
