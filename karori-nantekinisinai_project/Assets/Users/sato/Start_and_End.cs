@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using Unity.Collections;
-using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +17,8 @@ public class Start_and_End : MonoBehaviour
     [SerializeField] private float Time_limit;//ゲームの制限時間、単位は秒
     [SerializeField] private AudioSource SE_evolution;
     [SerializeField] private AudioSource SE_fall;
+    [SerializeField] private AudioSource SE_count;
+    [SerializeField] private AudioSource SE_whistle;
 
     private int Player1_size;// 0:S、1:M、2:L
     private int Player2_size;// 0:S、1:M、2:L
@@ -152,7 +153,8 @@ public class Start_and_End : MonoBehaviour
     IEnumerator Start_Count()
     {
         var wait = new WaitForSeconds(1f);
-        for(int i = 2; i > -1; i--)
+        SE_count.Play();
+        for (int i = 2; i > -1; i--)
         {
             Debug.Log($"{i}");
             number_text[i].SetActive(true);
@@ -243,6 +245,7 @@ public class Start_and_End : MonoBehaviour
 
     IEnumerator GameEnd()
     {
+        SE_whistle.Play();
         if (win == 3)
         {
             TimeUp_text.SetActive(true);
