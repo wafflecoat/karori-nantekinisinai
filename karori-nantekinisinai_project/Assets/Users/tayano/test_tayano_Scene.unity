@@ -787,7 +787,7 @@ MonoBehaviour:
   latestPos: {x: 0, y: 0, z: 0}
   speed: 0
   force_variable: 0
-  power: 50
+  power: 20
 --- !u!54 &1083915857
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1332,7 +1332,7 @@ MonoBehaviour:
   latestPos: {x: 0, y: 0, z: 0}
   speed: 0
   force_variable: 0
-  power: 50
+  power: 20
 --- !u!82 &1323905203
 AudioSource:
   m_ObjectHideFlags: 0
