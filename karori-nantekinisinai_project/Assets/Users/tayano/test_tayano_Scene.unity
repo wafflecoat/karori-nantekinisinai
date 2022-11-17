@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b59ae3a02e95b544bedc6d11671eac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPwer: 0
+  jumpPwer: 5
   rb: {fileID: 0}
   moving: {x: 0, y: 0, z: 0}
   latestPos: {x: 0, y: 0, z: 0}
