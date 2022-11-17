@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class player2: MonoBehaviour
 {
+    [SerializeField] private AudioSource jump_sound2;
     private bool jumpNow;
     public float jumpPwer;
     public Rigidbody rb;
@@ -92,6 +93,7 @@ public class player2: MonoBehaviour
         if (jumpNow == true) return;
         if (Input.GetButtonDown("Jump2"))
         {
+            jump_sound2.Play();
             rb.AddForce(transform.up * jumpPwer, ForceMode.Impulse);
             jumpNow = true;
         }
