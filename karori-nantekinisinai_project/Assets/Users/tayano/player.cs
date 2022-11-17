@@ -25,7 +25,12 @@ public class player: MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player2"))
         {
-            Vector3 force = transform.position - other.transform.position * power * player_force;
+            Vector3 myPos = transform.position;
+            Vector3 otherPos = other.transform.position;
+            myPos.y = 0;
+            otherPos.y = 0;
+
+            Vector3 force = myPos - otherPos * power * player_force;
             rb.AddForce(force,ForceMode.Impulse);
         }
         if (jumpNow == true)
