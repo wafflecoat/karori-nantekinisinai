@@ -7,24 +7,36 @@ using UnityEngine.UI;
 public class Go_main : MonoBehaviour
 {
     public GameObject ob_fadeout;
-    private Image fade_panel;
     [SerializeField] private float fadeSpeed;
+    [SerializeField] private AudioClip SE_submit;
+
+    private Image fade_panel;
+    private AudioSource AudioSource;
+    private bool Get_submit = false;
 
     // Start is called before the first frame update
     void Start()
     {
         fade_panel = ob_fadeout.GetComponent<Image>();
+        AudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit") && Get_submit == false)
         {
-            Debug.Log("aaa");
-            StartCoroutine(fadeout());
-            //SceneManager.LoadScene("main");
+            Get_submit = true;
+            Debug.Log("Œˆ’è‚ª‰Ÿ‚³‚ê‚½");
+            AudioSource.PlayOneShot(SE_submit);
+            StartCoroutine(Game_start());
         }
+    }
+
+    IEnumerator Game_start()
+    {
+        yield return StartCoroutine(fadeout());
+        SceneManager.LoadScene("main");
     }
 
     IEnumerator fadeout()
@@ -35,7 +47,7 @@ public class Go_main : MonoBehaviour
             Color color = fade_panel.color;
             color.a += fadeSpeed * Time.deltaTime;
             fade_panel.color = color;
-            if (color.a == 1) break;
+            if (color.a >= 1) break;
         }
     }
 

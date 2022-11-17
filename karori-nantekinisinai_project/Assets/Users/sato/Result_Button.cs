@@ -12,12 +12,16 @@ public class Result_Button : MonoBehaviour
     private Button button;
     private Animator animator;
     private Image Fade_panel;
+    private AudioSource AudioSource;
     [SerializeField] private float fadeSpeed;
+    private AudioClip SE_submit;
 
     // Start is called before the first frame update
     void Awake()
     {
         Fade_panel = ob_fadeout.GetComponent<Image>();
+        AudioSource = GetComponent<AudioSource>();
+        SE_submit = Resources.Load<AudioClip>("Audio/SE/botan_kurikku");
     }
 
     // Update is called once per frame
@@ -28,12 +32,14 @@ public class Result_Button : MonoBehaviour
 
     public void Click_Act_continue()
     {
+        AudioSource.PlayOneShot(SE_submit);
         StartCoroutine(_continue());
         StartCoroutine(Disabled_button());
     }
 
     public void Click_Act_quit()
     {
+        AudioSource.PlayOneShot(SE_submit);
         StartCoroutine(quit());
         StartCoroutine(Disabled_button());
     }
@@ -49,7 +55,7 @@ public class Result_Button : MonoBehaviour
     {
         yield return StartCoroutine(fadeout());
         Debug.Log("end");
-        Application.Quit();
+         Application.Quit();
     }
 
     IEnumerator fadeout()
